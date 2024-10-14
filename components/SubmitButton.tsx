@@ -1,7 +1,5 @@
-// export default SubmitButton;
 import Image from "next/image";
-
-import { Button } from "./ui/button";
+import { Button } from "./ui/button"; // Assuming your button styling is here
 
 interface ButtonProps {
   isLoading: boolean;

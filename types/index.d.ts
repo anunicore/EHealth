@@ -8,7 +8,8 @@ declare type Status = "pending" | "scheduled" | "cancelled";
 
 //create userparam
 declare interface CreateUserParams {
-  password(arg0: string, email: string, password: any, name: string): unknown;
+  //password(arg0: string, email: string, password: any, name: string): unknown;
+  password: string; 
   name: string;
   email: string;
   phone: string;

@@ -1,18 +1,34 @@
-// //Create a new user
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 
+interface SearchParamProps {
+  params: {
+    userId: string;
+  };
+}
+
 const Register = async ({ params: { userId } }: SearchParamProps) => {
-  const user = await getUser(userId);
+  let user;
+
+  try {
+    // Fetch the user data
+    user = await getUser(userId);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return <p>Error fetching user information. Please try again later.</p>;
+  }
+
+  // Ensure that user is defined before accessing its properties
+  if (!user) {
+    return <p> Tran Quoc An </p>;
+  }
 
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
-        {/* container{width:100% margin-rl:autop pad-rl:2rem=32px
-    @media min-widht:1400px{.container{max-w:1400px}} }  */}
         <div className="sub-container max-w-[496px]">
           <Image
             src="/assets/icons/logo-full.svg"
@@ -27,12 +43,19 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
             <p className="justify-items-end text-dark-600 xl:text-left">
               © 2024 CarePulse
             </p>
-            <Link href="/?admin=true" className="text-green-500">
-              Admin
-            </Link>
+
+            {/* Ensure the user object exists before rendering the link */}
+            {user && (
+              <Link href={`/patients/${user.id}/register`}>
+                <a className="text-green-500">
+                  Go to Register Page for {user.id}
+                </a>
+              </Link>
+            )}
           </div>
         </div>
       </section>
+
       <Image
         src="/assets/images/register-img.png"
         height={1000}
