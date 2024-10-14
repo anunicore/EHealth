@@ -1,16 +1,13 @@
 import PatientForm from "@/components/forms/PatientForm";
-// import { Link } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex h-screen max-h-screen">
-      {/* TODO: OTP Certification */}
-
+      {/* Main container wrapping both section and image */}
       <section className="remove-scrollbar container my-auto">
-        {/* container{width:100% margin-rl:autop pad-rl:2rem=32px 
-      @media min-widht:1400px{.container{max-w:1400px}} }  */}
+        {/* Container code */}
         <div className="sub-container max-w-[496px]">
           <Image
             src="/assets/icons/logo-full.svg"
@@ -31,6 +28,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <Image
         src="/assets/images/onboarding-img.png"
         height={1000}
